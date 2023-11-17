@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <style>
+      input {
+        display: block;
+        margin: 5px;
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Salut <span id="gretting"></span></h2>
+    <form id="form">
+      <label
+        >Id
+        <input type="text" name="id" id="id" />
+      </label>
+      <label
+        >Name
+        <input type="text" name="name" id="name" />
+      </label>
+      <label
+        >Profession
+        <input type="text" name="profession" id="profession" />
+      </label>
+      <label
+        >Password
+        <input type="password" name="password" id="password" />
+      </label>
+      <button type="submit">Update</button>
+    </form>
+    <button onclick="handleDelete()">Delete</button>
+  </body>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    // On déclare le id comme une constante
+    const id = urlParams.get("id");
+
+    fetch("/id=" + id)
+      .then((response) => response.json())
+      .then((data) => {
+        document.querySelector("#id").value = data.id;
+        document.querySelector("#name").value = data.name;
+        document.querySelector("#profession").value = data.profession;
+        document.querySelector("#password").value = data.password;
+        document.querySelector("#gretting").textContent = data.name;
+      })
+      .catch((error) => console.log(error));
+    // Update
+    document.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const formData = new FormData(document.getElementById("form"));
+      const plainFormData = Object.fromEntries(formData.entries());
+      const formDataJsonString = JSON.stringify(plainFormData);
+      //console.log(formDataJsonString)
+
+      fetch("/update-user", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: formDataJsonString,
+      });
+    });
+
+    // DELETE
+    function handleDelete(){
+      //alert('Salut'+ id);
+      fetch('/delete-user/'+ id, {
+        method: 'DELETE',
+        headers: {
+           "Content-Type": "application/json",
+          Accept: "application/json",
+        }
+      })
+
+    }
+  </script>
+</html>
