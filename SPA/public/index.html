@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPA</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="http://localhost:3000/static/css/style.css"> 
 </head>
 <body>
     <nav> 
+        <!-- data-link empeche de faire la requete http du serveur -->
         <a data-link href="/">Dashboard</a>
         <a data-link href="/posts">Posts</a>
         <a data-link href="/settings">Settings</a>
     </nav>
     <main>
-        <div id="app"> </div>
+        <div id="app"> 
+            <!-- contenu a changer -->
+        </div>
 
     </main>
     <script type="module" src="/static/js/index.js"></script>
