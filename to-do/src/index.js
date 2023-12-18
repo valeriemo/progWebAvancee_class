@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 import './App.css'; // Import du fichier CSS
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root')); //root ->dans le public index.html
 root.render(
   // Affichage des composants
   <React.StrictMode>
