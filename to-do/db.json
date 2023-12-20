@@ -1,0 +1,28 @@
+{
+  "tasks": [
+    {
+      "id": 2,
+      "text": "Exercise for 30 minutes",
+      "day": "2023-12-19 08:15:00",
+      "reminder": false
+    },
+    {
+      "id": 3,
+      "text": "Read a book",
+      "day": "2024-01-01 00:01:00",
+      "reminder": false
+    },
+    {
+      "id": 4,
+      "text": "Write in a journal",
+      "day": "2024-01-16 12:45:00",
+      "reminder": false
+    },
+    {
+      "text": "Faire la buche de noel",
+      "day": "2023-12-25T09:00",
+      "reminder": false,
+      "id": 5
+    }
+  ]
+}

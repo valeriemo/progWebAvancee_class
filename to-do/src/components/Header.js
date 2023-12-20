@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import Button from "./Button";
 
 const Header = (props) => {
-    const showConsole = () => {
-        console.log('Click')
-    };
+    // const showConsole = () => {
+    //     console.log('Click')
+    // };
     return (    
         <header className="flex justify-between items-center"> 
             <h1 className="text-3xl font-bold text-[#204B57]">{props.title}</h1>
-            <Button text="Ajouter" onClick={showConsole}/>
+            <Button text={props.showAdd ? 'Fermer' : 'Ajouter'} colorBackGround={props.showAdd ? 'btn-red' : 'btn-blue'} onClick={props.toggleForm}/>
         </header>
     )
 }

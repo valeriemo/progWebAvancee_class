@@ -4,7 +4,7 @@
 }
 
 .btn-blue{
-  @apply bg-[#173141] hover:bg-[#125E8A];
+  @apply bg-[#125E8A] hover:bg-[#173141] ;
 }
 .btn-red{
   @apply bg-[#FF785A] hover:bg-[#9b4937];
@@ -24,10 +24,15 @@
 .form-control input{
   @apply block w-full border border-[#204B57] rounded-md py-2 px-3 focus:outline-[#77858f] focus:border-[#505d66];
 }
-
 .form-control-check label{
   @apply block text-[#204B57] font-bold my-2;
 }
-.form-control-check input{
-  @apply block w-full border border-[#204B57] rounded-md py-2 px-3 focus:outline-[#77858f] focus:border-[#505d66];
+.form-control input {
+  @apply bg-gray-50 border border-gray-300 text-sm rounded-lg p-2.5 w-full block focus:ring-[#125E8A] focus:border-[#125E8A]
+}
+.form-control-check {
+  @apply flex items-center justify-between my-5; 
+}
+.form-control-check input {
+  @apply w-4 h-4 text-[#125E8A] bg-gray-100 border-gray-300 rounded focus:ring-[#204B57] focus:ring-2;
 }
