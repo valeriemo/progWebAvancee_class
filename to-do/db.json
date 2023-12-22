@@ -21,8 +21,14 @@
     {
       "text": "Faire la buche de noel",
       "day": "2023-12-25T09:00",
-      "reminder": false,
+      "reminder": true,
       "id": 5
+    },
+    {
+      "text": "Noel",
+      "day": "2023-12-24T09:00",
+      "reminder": true,
+      "id": 6
     }
   ]
 }

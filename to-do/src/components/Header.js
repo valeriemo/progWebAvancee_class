@@ -1,14 +1,15 @@
 import PropTypes from "prop-types";
 import Button from "./Button";
+import { useLocation } from "react-router-dom";
 
 const Header = (props) => {
-    // const showConsole = () => {
-    //     console.log('Click')
-    // };
+    const location = useLocation();
     return (    
         <header className="flex justify-between items-center"> 
             <h1 className="text-3xl font-bold text-[#204B57]">{props.title}</h1>
-            <Button text={props.showAdd ? 'Fermer' : 'Ajouter'} colorBackGround={props.showAdd ? 'btn-red' : 'btn-blue'} onClick={props.toggleForm}/>
+            {location.pathname === '/' && (
+                    <Button text={props.showAdd ? 'Close' : 'Add'} colorBackGround={props.showAdd ? 'btn-red' : 'btn-blue'} onClick={props.toggleForm} />
+            )}
         </header>
     )
 }

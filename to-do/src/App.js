@@ -3,7 +3,9 @@ import Header from "./components/Header";
 import { useEffect, useState} from "react"; // import du hook useState
 import ManyTasks from "./components/ManyTasks";
 import AddTask from "./components/AddTask";
-
+import Footer from "./components/Footer";
+import About from "./components/About";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
     // setTasks sera le nouveau tableau modifié
@@ -16,6 +18,9 @@ function App() {
         return data;
     }
 
+    /**
+     * GET toutes les taches
+     */
     useEffect(() => {
         const getTasks = async () => {
             const tasksFromServer = await fetchTasks('http://localhost:5001/tasks');
@@ -25,6 +30,10 @@ function App() {
     }, []); // [] -> tableau de dépendances, si on met rien, le useEffect va s'executer a chaque fois que le composant est monté 
 
 
+    /**
+     * DELETE une tache
+     * @param {*} id 
+     */
     const deleteTask = async (id) => {
         await fetch(`http://localhost:5001/tasks/${id}`, {
             method: 'DELETE'
@@ -33,6 +42,7 @@ function App() {
         // On va filtrer le tableau pour avoir tous les id sauf celui qu'on veut supprimer
         setTasks(tasks.filter((task)=>task.id !== id));
     };
+
 
     /**
      * Méthode pour le reminder
@@ -50,6 +60,7 @@ function App() {
         });
         setTasks(tasks.map((task)=>task.id === id ? {...task, reminder: !task.reminder} : task))
     }
+
 
     /**
      * Ajouter une nouvelle tache
@@ -70,15 +81,22 @@ function App() {
     const [showAddTask, setShowAddTask] = useState(false);
 
     return (
+        <BrowserRouter>
         <div className="font-sans min-h-screen">
-            <div className="container mx-auto p-8 border-2 border-[#125E8A] mt-16 bg-[#c2b8b26b] rounded-[3px] max-w-screen-md text-lg">
-                <Header toggleForm={ ()=> setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
-                { showAddTask && <AddTask onAdd={addTask}/> }
-                { tasks.length > 0 ? 
-                <ManyTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> 
-                : <div className="p-4 mb-4 mt-5 text-sm text-[#FF785A] bg-[#ffffff] rounded-lg font-bold">No tasks to show</div> }
-            </div>
+          <div className="container mx-auto p-8 border-4 border-blue-200 rounded-lg mt-16 max-w-screen-md">
+
+            <Header toggleForm={()=> setShowAddTask(!showAddTask)} showAdd={showAddTask}/>  
+            { showAddTask && <AddTask onAdd={addTask}/>}
+
+            <Routes>
+                <Route path="/" element={<ManyTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/>}></Route>
+                <Route path="/about" element={<About setShowAddTask={setShowAddTask}/>}></Route>
+            </Routes>
+
+            <Footer/>
+          </div>
         </div>
+      </BrowserRouter>
     );
 }
 
