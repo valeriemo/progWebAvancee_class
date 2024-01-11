@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/vue@3"></script>
+        <title>INTRO VUE|Méthode dans Vue-js</title>
+        <style>
+            body {
+                background-color: #dde8ad3f;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 100vh;            }
+            .box {
+                background-color: #da20ef54;
+                border-radius: 5px;
+                padding: 20px;
+                height: 100px;
+                width: 100px;
+            }
+            button {
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 1.5rem;
+                border: 3px solid #ed0bb1ad;
+                background-color: #f06969b5;
+                margin: 8px 0px 20px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #f06969;
+            }
+            input {
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 1.5rem;
+                border: 3px solid #ed0bb1ad;
+                margin: 10px 0px 30px;
+            }
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="message" @keyup.enter="greet">
+            <br>
+            <button @click="toggleBox">Toggle Box</button>
+            <div class="box" v-if="isVisible"></div>
+        </div>
+        <script>
+            let app = Vue.createApp({
+                data: function (){
+                    return {
+                        message: "Hello World",
+                        isVisible: true
+                    }
+                },
+                methods: {
+                    toggleBox(){
+                        this.isVisible = !this.isVisible;
+                    },
+                    greet(){
+                        console.log(this.message);
+                    }
+                }
+            });
+            app.mount("#app");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://unpkg.com/vue@3"></script>
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #dde8ad3f;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 100vh;
+                font-family: monospace;
+            }
+            input {
+                display: block;
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 1.5rem;
+                border: 3px solid #ed0bb1ad;
+                margin: 10px 0px 30px;
+            }
+            button {
+                padding: 8px 14px;
+                border-radius: 5px;
+                border: none;
+                background-color: #ed0bb1ad;
+                color: #fff;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 30px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="app">
+            <login-form/>
+        </div>
+
+        <script>
+            let app = Vue.createApp({});
+            //Parent
+            app.component("login-form", {
+                template: `
+            <h1>{{ title }}</h1>
+            <form @submit.prevent="handleSubmit">
+                <custom-input
+                v-for="(input, i) in inputs"
+                :key="i"
+                :label="input.label"
+                :type="input.type"
+                v-model="input.value"
+                />
+                <custom-button/>
+            </form>
+            `,
+            data(){
+                return {
+                    title: "Form looping",
+                    inputs: [
+                        {
+                            label: "Username",
+                            type: "text",
+                            value: "", // la valeur que l'utilisateur va saisir
+                        },
+                        {
+                            label: "Password",
+                            type: "password",
+                            value: "",
+                        },
+                        {
+                            label: "Email",
+                            type: "email",
+                            value: "",
+                        },
+                    ],
+                }
+            },
+            methods: {
+                handleSubmit(){
+                    console.log(this.inputs[0].value, this.inputs[1].value, this.inputs[2].value);
+                }
+            }
+            });
+            //Enfant
+            app.component("custom-input", {
+                template: `
+                <label>{{ label }}
+                    <input :type="type" v-model="inputValue">
+                </label>
+                `,
+                props: ["label", "type", "modelValue"],
+                computed: {
+                    inputValue: {
+                        get(){
+                            return this.modelValue;
+                        },
+                        set(value){
+                            // l'enfant modifie la valeur du parent
+                            // on émet un événement
+                            this.$emit("update:modelValue", value);
+                        }
+                    }
+                }
+            })
+            // le v-model du parent est lié au modelValue de l'enfant
+            app.component("custom-button", {
+                template: `
+                <button>Submit</button>
+                `,
+            })
+            app.mount("#app");
+        </script>
+    </body>
+</html>

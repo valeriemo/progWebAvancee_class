@@ -85,7 +85,7 @@ function App() {
         <div className="font-sans min-h-screen">
           <div className="container mx-auto p-8 border-4 border-blue-200 rounded-lg mt-16 max-w-screen-md">
 
-            <Header toggleForm={()=> setShowAddTask(!showAddTask)} showAdd={showAddTask}/>  
+            <Header toggleForm={()=> showetShowAddTask(!showAddTask)} showAdd={showAddTask}/>  
             { showAddTask && <AddTask onAdd={addTask}/>}
 
             <Routes>

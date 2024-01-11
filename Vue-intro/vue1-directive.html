@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- CDN -->
+        <script src="https://unpkg.com/vue@3"></script>
+        <title>Document</title>
+        <style>
+            body {
+                background-color: #dde8ad;
+            }
+            #app {
+                background-color: #ffffffda;
+                border-radius: 5px;
+                padding: 20px;
+                color: rgb(240, 130, 218);
+                font-family: monospace;
+                font-size: 2rem;
+                transition: all 0.2s;
+            }
+            .box{
+                background-color: #da20ef54;
+                border-radius: 5px;
+                padding: 20px;
+                height: 100px;
+                width: 100px;
+            }
+            .box-2{
+                background-color: #4def2054;
+                border-radius: 5px;
+                padding: 20px;
+                height: 100px;
+                width: 100px;
+            }
+            .box-3{
+                background-color: #054970a5;
+                border-radius: 5px;
+                padding: 20px;
+                height: 100px;
+                width: 100px;
+            }
+            input{
+                border-radius: 5px;
+                padding: 10px;
+                font-size: 1.5rem;
+                border: 1px solid #00000054;
+                margin: 10px 0px 30px;
+            }
+            /* seulement parce qu'on utilise CDN */
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            {{ message }}
+            <br>
+            <!-- on connecte la donnée à l'input et la modifie en temps réel -->
+            <input type="text" v-model="message">
+            <br>
+            <div class="box" v-if="isVisible"></div>
+            <div class="box-2" v-else-if="isVisible2"></div>
+            <div class="box-3" v-else></div>
+        </div>
+        <script>
+            // à l'intérieur de vue tout est passé en tant qu'objet {}
+            let app = Vue.createApp({
+                data: function(){
+                    return {
+                        message : "Hello World",
+                        isVisible : false,
+                        isVisible2 : false,
+                    }
+                }
+
+            })
+            app.mount('#app')
+        </script>
+    </body>
+</html>
