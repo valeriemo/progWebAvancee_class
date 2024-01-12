@@ -1,4 +1,5 @@
-// défini le modèle product
+// défini le modèle product 
+// par defaut, sequelize ajoute les attributs id, createdAt et updatedAt à chaque modèle pour suivre les changements
 module.exports = (connex, Sequelize) => {
     const Product = connex.define("product", {
         name:{

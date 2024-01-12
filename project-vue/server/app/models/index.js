@@ -15,5 +15,6 @@ const connex = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const db = {}; // objet vide pour stocker les modèles Sequelize
 db.Sequelize = Sequelize; // stocke la classe Sequelize dans l'objet db qui comprend les méthodes signature Sequelize
 db.connex = connex; // stocke la connexion à la bd dans l'objet db
+// import du model (table) dans la db:
 db.products = require("./product.model.js")(connex, Sequelize); // stocke le modèle product dans l'objet db (j'envoi la connexion et la classe Sequelize)
 module.exports = db; // exporte l'objet db

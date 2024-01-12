@@ -13,11 +13,12 @@ app.use(cors(corsOptions)); // Configuration du CORS (Cross-Origin Resource Shar
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // Configuration pour la réception des requêtes 
 
+//TEST POUR VOIR SI LE SERVEUR MARCHE
 // req->ce quon envoie au serveur
 // res->ce que le serveur renvoie au client
-app.get('/', (req, res) => {
-    res.json({ message: 'Bienvenue sur le serveur de l\'application Vue.js' });
-});
+// app.get('/', (req, res) => {
+//     res.json({ message: 'Bienvenue sur le serveur de l\'application Vue.js' });  
+// });
 
 const PORT = 8082; // Port d'écoute du serveur
 app.listen(PORT, () => {
@@ -25,3 +26,5 @@ app.listen(PORT, () => {
 })
 
 // Base de données | Server: MySQL:3306 Database: db_product
+const db = require("./app/models"); // Importation de l'index du dossier models
+db.connex.sync()
