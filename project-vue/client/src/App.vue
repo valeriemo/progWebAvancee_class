@@ -1,31 +1,42 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/test">Test</router-link>
-  </nav>
-  <router-view/>
+  <!-- Les view(route) sont accessible a partir de l'url versus les composants qui sont accessible a partir des autres composants -->
+    <MainNav
+    :toggle="toggleSideBar"
+    />
+    <div class="max-w-screen-xl mx-auto">
+    <RouterView
+    :inventory="inventory"
+    />
+    <MainFooter />
+    <SideBar
+    v-if="showSideBar"
+    :toggle="toggleSideBar"
+    />
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import MainFooter from '@/components/MainFooter.vue'
+import SideBar from '@/components/SideBar.vue'
+import MainNav from '@/components/MainNav.vue'
+import products from '@/products.json'
 
-nav {
-  padding: 30px;
+export default {
+  components: {
+    MainFooter,
+    SideBar,
+    MainNav
+  },
+  data () {
+    return {
+      showSideBar: false,
+      inventory: products
+    }
+  },
+  methods: {
+    toggleSideBar () {
+      this.showSideBar = !this.showSideBar
+    }
+  }
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
