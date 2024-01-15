@@ -11,6 +11,7 @@
     <SideBar
     v-if="showSideBar"
     :toggle="toggleSideBar"
+    :cart="cart"
     />
   </div>
 </template>
@@ -30,7 +31,8 @@ export default {
   data () {
     return {
       showSideBar: false,
-      inventory: products
+      inventory: products,
+      cart: {}
     }
   },
   methods: {

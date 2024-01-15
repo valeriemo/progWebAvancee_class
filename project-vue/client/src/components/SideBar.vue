@@ -20,24 +20,12 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr class="my-2">
+                      <tr v-for="(quantity, i) in cart" :key="i" class="my-2">
                           <td><img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="..." class="max-w-[100px] max-h-[100px] my-2" /></td>
                           <td>Gift Bag</td>
                           <td>$99.00</td>
                           <td class="text-center">1</td>
                           <td>$99.00</td>
-                          <td class="text-center">
-                              <button class="text-red-600 px-7 text-lg font-bold">
-                                  &times;
-                              </button>
-                          </td>
-                      </tr>
-                      <tr class="my-2">
-                          <td><img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg" alt="..." class="max-w-[100px] max-h-[100px] my-2" /></td>
-                          <td>Sport Sneakers</td>
-                          <td>$599.00</td>
-                          <td class="text-center">1</td>
-                          <td>$599.00</td>
                           <td class="text-center">
                               <button class="text-red-600 px-7 text-lg font-bold">
                                   &times;
@@ -58,6 +46,6 @@
 
 <script>
 export default {
-  props: ['toggle']
+  props: ['toggle', 'cart']
 }
 </script>
