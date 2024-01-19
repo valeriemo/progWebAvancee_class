@@ -24,7 +24,7 @@
 import MainFooter from '@/components/MainFooter.vue'
 import SideBar from '@/components/SideBar.vue'
 import MainNav from '@/components/MainNav.vue'
-import products from '@/products.json'
+import ProductDataService from '@/services/ProductDataService.js'
 
 export default {
   components: {
@@ -32,10 +32,19 @@ export default {
     SideBar,
     MainNav
   },
+  mounted () {
+    ProductDataService.getAll()
+      .then(response => {
+        this.inventory = response.data
+      })
+      .catch(e => {
+        console.log(e)
+      })
+  },
   data () {
     return {
       showSideBar: false,
-      inventory: products,
+      inventory: [],
       cart: {}
     }
   },
@@ -49,6 +58,7 @@ export default {
       if (!this.cart[product]) this.cart[product] = 0
       // on ajouter a partir de l'index la quantité (lie au input avec v-model) dans le tableau inventory
       this.cart[product] += this.inventory[index].quantity
+      this.inventory[index].quantity = 0 // on reinitialise la quantité de l'input a 0
       // console.log(this.cart)
     },
     removeItem (name) {
